@@ -1,0 +1,82 @@
+
+<form [formGroup]="RegisterForm" (ngSubmit)="register()">
+
+  <app-input
+    [label]="'Name'"
+    [placeholder]="'Enter Name'"
+    [Control]="Name"
+    [errorMessage]="{ required: 'Name is required.', minlength: 'Name must have more than 4 characters.' }"
+  ></app-input>
+
+  <app-input
+    [label]="'Email'"
+    [placeholder]="'Enter Email'"
+    [Control]="Email"
+    [errorMessage]="{ required: 'Email is required.', email: 'Please enter a valid email.', EmailTaken: 'email is already taken' }"
+    [inputType]="'email'"
+  ></app-input>
+
+  <app-input
+    [label]="'Age'"
+    [placeholder]="'Enter Age'"
+    [Control]="Age"
+    [errorMessage]="{ required: 'Age is required.', min: 'Age must be at least 18.' }"
+    [inputType]="'number'"
+  ></app-input>
+
+  <app-input
+    [label]="'Password'"
+    [placeholder]="'Enter Password'"
+    [Control]="Password"
+    [errorMessage]="{ required: 'Password is required.', minlength: 'Password must be at least 8 characters.' }"
+    [inputType]="'password'"
+  ></app-input>
+
+  <app-input
+    [label]="'Confirm Password'"
+    [placeholder]="'Confirm Password'"
+    [Control]="ConfirmPassword"
+    [errorMessage]="{ required: 'Confirm Password is required.', Notmatch: 'Password confirmation mismatch. Please verify' }"
+    [inputType]="'password'"
+  ></app-input>
+
+  <app-input
+    [label]="'Phone Number'"
+    [placeholder]="'Enter Phone Number'"
+    [Control]="PhoneNumber"
+    [errorMessage]="{ required: 'Phone Number is required.', pattern: 'Please enter a valid phone number.' }"
+    [inputType]="'text'"
+    format="00 000 000"
+  ></app-input>
+
+  <!-- Radio Buttons -->
+  <app-input
+    [label]="'Gender'"
+    [options]="[{ value: 'male', label: 'Male' }, { value: 'female', label: 'Female' }]"
+    [Control]="Gender"
+    [inputType]="'radio'"
+    [errorMessage]="{ required: 'Gender is required.' }"
+  ></app-input>
+
+  <!-- Select Dropdown -->
+  <app-input
+    [label]="'Country'"
+    [options]="countries"
+    [Control]="Country"
+    [inputType]="'select'"
+    [placeholder]="'Select your country'"
+    [errorMessage]="{ required: 'Country is required.' }"
+  ></app-input>
+
+  
+  <button type="submit" 
+  class="block w-full bg-indigo-400 text-white py-1.5 px-3 
+  rounded transition hover:bg-indigo-500 
+  disabled:opacity-50 disabled:bg-indigo-400" 
+  [disabled]="RegisterForm.invalid || insubmition">
+    Submit
+  </button>
+</form>
+<app-alert *ngIf="showAlert" [color]="alertColor">
+  {{ alertMsg }}
+</app-alert>
