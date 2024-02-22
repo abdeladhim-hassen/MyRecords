@@ -45,7 +45,7 @@ export class AuthService {
     const userCredentials = await this.auth.createUserWithEmailAndPassword(userData.Email, userData.Password);
 
     if (!userCredentials.user) {
-      throw new Error("User can't be found");
+      throw new Error("User can't be Create");
     }
 
     await this.usersCollection.doc(userCredentials.user.uid).set({
